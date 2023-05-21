@@ -1,0 +1,67 @@
+3.PerformthefollowingoperationsusingPythonontheAirqualityandHeart
+Diseasesdatasets
+a.Datacleaning
+b.Dataintegration
+c.Datatransformation
+
+
+
+import pandas as pd
+import numpy as np
+
+
+d1=pd.read_csv(r"heart1.csv")
+d1
+
+d2=pd.read_csv(r"AirQuality.csv")
+d2
+
+d2=pd.read_csv(r"AirQuality.csv", sep=";")
+d2
+
+d1.dtypes
+
+d2.dtypes
+
+d1.isna().sum().sum()
+
+d2.isna().sum().sum()
+
+d3=d2.iloc[:,:15]
+
+d3
+
+d3.isna().sum().sum()
+
+d4=d3.dropna()
+d4
+
+d4['Date']=pd.to_datetime(d4['Date'])
+d4
+
+d4.replace(to_replace=',',value='.',regex=True,inplace=True)
+d4
+
+d4.drop_duplicates(inplace=True)
+d4
+
+d5=d4[['T','RH']].loc[:50]
+d6=d4[['T','RH']].loc[51:100]
+d5
+
+d6
+
+d8 = pd.concat([d5,d6])
+d8
+
+d1.loc[d1['sex']==1,'sex']='M'
+d1.loc[d1['sex']==0,'sex']='F'
+
+d1
+
+from sklearn.preprocessing import LabelEncoder
+labelencoder=LabelEncoder()
+d1['sex']=labelencoder.fit_transform(d1['sex'])
+
+d1
+

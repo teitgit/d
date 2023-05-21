@@ -1,0 +1,85 @@
+8.VisualizethedatausingPythonlibrariesmatplotlib,seabornbyplottingthe
+graphsfortheAirqualityandHeartDiseasesdatasets
+a.Datatransformation
+b.Errorcorrecting
+c.Datamodelbuilding
+
+
+import pandas as pd
+import numpy as np
+import seaborn as sn
+import matplotlib.pyplot as mat
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
+
+d1=pd.read_csv(r"heart1.csv")
+d1
+
+d2=pd.read_csv(r"AirQuality.csv")
+d2
+
+d2=pd.read_csv(r"AirQuality.csv", sep=";")
+d2
+
+d1.dtypes
+
+d2.dtypes
+
+d1.isna().sum().sum()
+
+d2.isna().sum().sum()
+
+d3=d2.iloc[:,:15]
+
+d3
+
+d3.isna().sum().sum()
+
+d4=d3.dropna()
+d4
+
+d4['Date']=pd.to_datetime(d4['Date'])
+d4
+
+d4.replace(to_replace=',',value='.',regex=True,inplace=True)
+d4
+
+d4.drop_duplicates(inplace=True)
+d4
+
+d1.loc[d1['sex']==1,'sex']='M'
+d1.loc[d1['sex']==0,'sex']='F'
+
+d1
+
+from sklearn.preprocessing import LabelEncoder
+labelencoder=LabelEncoder()
+d1['sex']=labelencoder.fit_transform(d1['sex'])
+
+x=d1.drop("target",axis=1)
+y=d1.target
+
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3,random_state=0)
+
+x_train.shape,y_train.shape
+
+gnb=GaussianNB()
+
+gnb.fit(x_train,y_train)
+
+y_pred=gnb.predict(x_test)
+y_pred
+
+accuracy_score(y_test,y_pred)
+
+dataplot=sn.heatmap(d4.corr(), cmap="Blues", annot=True)
+mat.figure(figsize=(20,15))
+mat.show()
+
+d4.plot(kind="box",figsize=(20,8))
+mat.show()
+
+sn.scatterplot(x='Time',y='PT08.S1(CO)',data=d4)
+
+d4['PT08.S1(CO)'].astype('float64').plot(kind='hist',bins=20)

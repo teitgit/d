@@ -1,0 +1,31 @@
+2.PerformthefollowingoperationsusingPythonontheFacebookmetrics
+datasets
+a.Createdatasubsets
+b.SortData
+c.ShapeandreshapeData
+
+
+
+
+import pandas as pd
+import numpy as np
+d = pd.read_csv(r"dataset_Facebook.csv")
+d
+
+
+d = pd.read_csv(r"dataset_Facebook.csv", sep=";")
+d
+
+d.shape
+
+d4=d[['Type','like','share']].loc[:50]
+d4
+
+sort=d4.sort_values('like', ascending=False)
+sort
+
+sort4=d4.sort_values('share', ascending=False)
+sort4
+
+pivot_table1=pd.pivot_table(d,index=['Type','Category'], values='like')
+pivot_table1

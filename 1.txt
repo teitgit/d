@@ -1,0 +1,37 @@
+1.PerformthefollowingoperationsusingPythonontheFacebookmetrics
+datasets
+a.Createdatasubsets
+b.MergeData
+c.TransposingData
+
+
+import pandas as pd
+import numpy as np
+d = pd.read_csv(r"dataset_Facebook.csv")
+d
+
+
+d = pd.read_csv(r"dataset_Facebook.csv", sep=";")
+d
+
+d.shape
+
+d1=d[['Type', 'Post Month','Paid']]
+d1
+
+d1=d[['Type', 'Post Month','Paid']].loc[0:20]
+d1
+
+d1.head()
+
+d1.tail()
+
+d2=d[['Type', 'Post Month','Paid']].loc[21:40]
+d2
+
+merge=pd.concat([d1,d2])
+merge
+
+
+trans=d.transpose()
+trans
