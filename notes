@@ -1,0 +1,38 @@
+[  ] Nan drop
+Df1= df.dropna()
+
+[  ] To make changes I  original dataset
+Df1= df.dropna(inplace = True)
+
+[  ] To fill up the NaN
+Df.fillna(130, inplace=True)
+
+[  ] Change nana in particular coloumn
+Df["Coloumn name"].fillna(130, inplace=True)
+
+[  ] Replace Nan with mean of the coloumn
+x = df["coloumn name"].mean()
+Df["Coloumn name"].fillna(x, inplace=True)
+Similarly mode and median
+
+[  ] To change date format
+Df["Coloumn name"] = pd.to_datetime(df['Coloumn name'])
+
+[  ] Chane wrong value
+df.loc[7, 'Duration']  = 45
+
+[  ] To change data using function/loop
+  for x in df.index
+          if df.loc[x, "Duration "] > 120:
+          if df.loc[x, "Duration "] = 120
+
+[  ] To drop the row of wrong data using function
+for x in df.index
+          if df.loc[x, "Duration "] > 120:
+             df.drop(x, inplace= True)
+
+[  ] To print duplicate data
+print(df.duplicated())
+
+[  ] To drop duplicate
+df.drop_duplice(inplace=True
